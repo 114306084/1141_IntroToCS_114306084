@@ -1,0 +1,163 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eeede1;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* MAIN CONTAINER */
+.main-container {
+    width: 1000px;
+    background-color: white;
+    display: flex;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* LEFT PANEL */
+.left-panel {
+    width: 30%;
+    background-color: #92babb;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-photo {
+    width: 100%;
+    display: block;
+}
+
+.left-content {
+    padding: 22px;
+}
+
+.name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.role {
+    margin: 4px 0 18px;
+    font-size: 13px;
+}
+
+/* LEFT SECTION */
+.left-section {
+    margin-bottom: 22px;
+}
+
+.left-heading {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+}
+
+.school-logo {
+    width: 120px;
+    margin-top: 20px;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+    width: 70%;
+    padding: 26px;
+    color: #333;
+}
+
+/* SECTION BLOCK */
+.section {
+    margin-bottom: 36px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #cfd3da;
+    margin-bottom: 14px;
+}
+
+/* EDUCATION */
+.edu-item {
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.year {
+    width: 120px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* SKILL TAGS */
+.tag {
+    display: inline-block;
+    background-color: #e6effb;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #234e8c;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+/* HOMEWORK & LAB */
+.hw-lab-container {
+    display: flex;
+    gap: 22px;
+}
+
+.card {
+    flex: 1;
+    background-color: #f5f6f8;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card ul {
+    padding-left: 20px;
+}
+
+.card a {
+    color: #1a5fb4;
+    text-decoration: none;
+}
+
+/* MUSIC */
+.music-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.music-item {
+    text-align: center;
+}
+
+.music-item img {
+    width: 56px;
+    margin-bottom: 6px;
+}
+
+.music-note {
+    font-size: 13px;
+    margin-top: 15px;
+    color: #666;
+}
