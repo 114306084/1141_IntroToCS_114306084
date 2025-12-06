@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>114306084_Number Guessing Game</title>
+</head>
+<body>
+    <h1>114306084_Number Guessing Game</h1>
+
+    <div id="result"></div>
+
+    <script>
+        var answer = Math.floor(Math.random() * 100) + 1;
+
+        var min = 1;
+        var max = 100;
+        var chances = 7;
+
+        while (chances > 0) {
+            var input = window.prompt(
+                `請輸入 ${min} 到 ${max} 之間的整數。\n你還有 ${chances} 次機會。`
+            );
+
+            if (input === null) {
+                alert("請勿取消，請輸入數字！");
+                continue;
+            }
+
+            input = input.trim();
+
+            if (input === "" || isNaN(input)) {
+                alert("請輸入有效的數字！");
+                continue;
+            }
+
+            var guess = Number(input);
+
+            if (guess < min || guess > max) {
+                alert(`請輸入有效範圍內的數字（不能超出 ${min} 到 ${max} ）！`);
+                continue;
+            }
+
+            if (guess === answer) {
+                alert(`恭喜你答對了！正確答案是 ${answer}`);
+                document.getElementById("result").innerHTML =
+                    `<img src="correct.jpg" width="300">`;
+                break;
+            }
+
+            if (guess > answer) {
+                max = guess;
+            } else {
+                min = guess;
+            }
+
+            chances--;
+        }
+
+        if (chances === 0) {
+            alert(`很可惜，你用完所有機會了！正確答案是 ${answer}`);
+            document.getElementById("result").innerHTML =
+                `<img src="wrong.jpg" width="300">`;
+        }
+    </script>
+
+
+</body>
+</html>
