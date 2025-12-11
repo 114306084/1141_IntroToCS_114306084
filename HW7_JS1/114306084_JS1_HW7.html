@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>114306084_HW7_1A2B</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        #record {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #aaa;
+            width: 320px;
+            min-height: 100px;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>114306084_HW7_1A2B</h1>
+
+<p>Enter your guess:</p>
+
+<input type="text" id="userInput" maxlength="4">
+<button onclick="play()">Guess</button>
+
+<div id="record"></div>
+
+<script>
+    let answer = generateAnswer();
+    let count = 0;
+
+    console.log("Secret Answer = " + answer);  // for debugging
+
+    function generateAnswer() {
+        let digits = ["0","1","2","3","4","5","6","7","8","9"];
+        let ans = "";
+
+        while (ans.length < 4) {
+            let index = Math.floor(Math.random() * digits.length);
+            ans += digits[index];
+            digits.splice(index, 1);
+        }
+        return ans;
+    }
+
+    function play() {
+        let input = document.getElementById("userInput").value.trim();
+
+        if (!isValid(input)) {
+            alert("Invalid input! Please enter 4 unique digits.");
+            return;
+        }
+
+        count++;
+
+        let result = checkAB(input, answer);
+
+        document.getElementById("record").innerHTML +=
+            `<p>${count}. ${input} → ${result}</p>`;
+
+        if (result === "4A0B") {
+            alert("Correct! Total attempts: " + count);
+        }
+
+        document.getElementById("userInput").value = "";
+    }
+
+    function isValid(str) {
+        if (str.length !== 4) return false;
+        if (!/^\d{4}$/.test(str)) return false;
+
+        let set = new Set(str);
+        return set.size === 4;
+    }
+
+    function checkAB(guess, ans) {
+        let A = 0, B = 0;
+
+        for (let i = 0; i < 4; i++) {
+            if (guess[i] === ans[i]) {
+                A++;
+            } else if (ans.includes(guess[i])) {
+                B++;
+            }
+        }
+        return `${A}A${B}B`;
+    }
+</script>
+
+</body>
+</html>
