@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.input-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+table {
+  width: 60%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+tfoot {
+  font-weight: bold;
+}
