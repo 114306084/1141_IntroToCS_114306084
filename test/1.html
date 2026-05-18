@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《蘋果的滋味》角色心理測驗</title>
+
+<style>
+body{
+  margin:0;
+  font-family:"Noto Serif TC",serif;
+  background:linear-gradient(to bottom,#f8f1e8,#efe3d6);
+  color:#4a3a2c;
+}
+
+.wrap{
+  max-width:430px;
+  margin:auto;
+  padding:24px 18px 50px;
+}
+
+.card{
+  background:#fffaf4;
+  border-radius:28px;
+  padding:28px 24px;
+  border:1px solid #dccbbb;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.title{
+  text-align:center;
+  font-size:30px;
+  letter-spacing:0.18em;
+  margin-top:8px;
+}
+
+.subtitle{
+  text-align:center;
+  line-height:1.8;
+  font-size:14px;
+  color:#7a685a;
+}
+
+.divider{
+  height:1px;
+  background:#dccbbb;
+  margin:24px 0;
+}
+
+.apple{
+  font-size:70px;
+  text-align:center;
+}
+
+.start-text{
+  text-align:center;
+  margin-top:12px;
+  color:#7a685a;
+}
+
+button{
+  width:100%;
+  padding:16px;
+  margin-top:12px;
+  border:none;
+  border-radius:18px;
+  font-size:15px;
+  line-height:1.6;
+  cursor:pointer;
+  transition:0.2s;
+  font-family:inherit;
+}
+
+.choice{
+  background:#fff;
+  border:1px solid #dccbbb;
+  color:#4a3a2c;
+  text-align:left;
+}
+
+.choice:hover{
+  background:#f2e3d4;
+}
+
+.primary{
+  background:#9c6b4e;
+  color:white;
+}
+
+.primary:hover{
+  background:#83563d;
+}
+
+.progress{
+  text-align:center;
+  font-size:13px;
+  color:#8a7768;
+  letter-spacing:0.15em;
+}
+
+.question{
+  text-align:center;
+  line-height:1.8;
+  font-size:21px;
+  margin:22px 0;
+}
+
+.hidden{
+  display:none;
+}
+
+.role-img{
+  width:180px;
+  display:block;
+  margin:10px auto 20px;
+  border-radius:18px;
+  border:1px solid #dccbbb;
+}
+
+.result-name{
+  text-align:center;
+  font-size:34px;
+  letter-spacing:0.18em;
+}
+
+.result-tag{
+  text-align:center;
+  margin-top:8px;
+  color:#7a685a;
+  font-size:17px;
+}
+
+.result-text{
+  margin-top:22px;
+  line-height:2;
+  font-size:16px;
+}
+
+.quote{
+  margin-top:20px;
+  padding:16px;
+  background:#fff5eb;
+  border-left:4px solid #9c6b4e;
+  line-height:1.9;
+}
+
+.footer{
+  text-align:center;
+  margin-top:18px;
+  color:#8c7a6a;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<div class="card">
+
+<div id="start">
+
+<h1 class="title">你是誰？</h1>
+
+<p class="subtitle">
+完成測驗，找出你在<br>
+《蘋果的滋味》裡的角色
+</p>
+
+<div class="divider"></div>
+
+<div class="apple">🍎</div>
+
+<p class="start-text">先別吃，先測。</p>
+
+<button class="primary" onclick="startQuiz()">
+開始測驗
+</button>
+
+</div>
+
+<div id="quiz" class="hidden">
+
+<div class="progress" id="progress"></div>
+
+<div class="divider"></div>
+
+<h2 class="question" id="question"></h2>
+
+<div id="answers"></div>
+
+</div>
+
+<div id="result" class="hidden">
+
+<div class="progress">
+測驗結果
+</div>
+
+<div class="divider"></div>
+
+<img class="role-img" id="roleImage">
+
+<h2 class="result-name" id="roleName"></h2>
+
+<div class="result-tag" id="roleTag"></div>
+
+<p class="result-text" id="roleText"></p>
+
+<div class="quote" id="roleQuote"></div>
+
+<button class="primary" onclick="restart()">
+重新測驗
+</button>
+
+</div>
+
+</div>
+
+<div class="footer">
+完成測驗，理解一段時代的故事。
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"如果家中突然發生重大意外，你第一時間會想什麼？",
+
+a:[
+["之後生活怎麼辦？錢夠不夠？","江阿發"],
+["人平安最重要，我真的很害怕。","阿桂"],
+["我要趕快照顧家人、穩住場面。","阿珠"],
+["事情都發生了，先看看接下來會怎樣。","阿吉"],
+["我應該負責處理，並給出補償。","格雷上校"]
+]
+},
+
+{
+q:"面對比自己更有權勢的人，你通常會？",
+
+a:[
+["保持客氣，但會思考對方能不能幫上忙。","江阿發"],
+["緊張不安，怕自己說錯話。","阿桂"],
+["先觀察氣氛，再保護身邊的人。","阿珠"],
+["覺得新奇，忍不住東看西看。","阿吉"],
+["主動安排事情，讓局面照自己的方式走。","格雷上校"]
+]
+},
+
+{
+q:"如果家裡經濟困難，你最可能怎麼想？",
+
+a:[
+["只要能讓家裡好過，再辛苦都要撐。","江阿發"],
+["壓力太大了，真的不知道怎麼辦。","阿桂"],
+["也許我可以犧牲一點，幫家裡分擔。","阿珠"],
+["先不要想太多，總會有辦法吧。","阿吉"],
+["我可以提供資源，讓他們有新的機會。","格雷上校"]
+]
+},
+
+{
+q:"你在團體中最像哪種人？",
+
+a:[
+["扛責任、撐住現實的人","江阿發"],
+["情緒很真、很在意家人的人","阿桂"],
+["默默照顧大家的人","阿珠"],
+["帶著好奇心看世界的人","阿吉"],
+["提供資源與決策的人","格雷上校"]
+]
+},
+
+{
+q:"如果突然得到一筆意外之財，你會？",
+
+a:[
+["覺得這可能是改變生活的機會。","江阿發"],
+["終於可以鬆一口氣。","阿桂"],
+["先想到可以幫家裡減輕負擔。","阿珠"],
+["太好了，想先享受一下新鮮感。","阿吉"],
+["希望這筆錢能真的改善別人的處境。","格雷上校"]
+]
+}
+
+];
+
+const results = {
+
+"江阿發":{
+image:"jiang.png",
+tag:"一家之主，靠勞力維生",
+text:"你務實、能扛責任，很多時候會先考慮現實與家庭生計。你不是只看重利益，而是在壓力中努力替家人找一條能活下去的路。",
+quote:"象徵底層勞動者的辛苦與堅韌。"
+},
+
+"阿桂":{
+image:"agui.png",
+tag:"情緒外露，守護家庭",
+text:"你敏感、焦慮，也很重視家人。你的情緒不是脆弱，而是因為你太清楚生活的不安定，所以總是想替家人守住最後一點安全感。",
+quote:"象徵底層婦女在恐懼與現實中的求生反應。"
+},
+
+"阿珠":{
+image:"azhu.png",
+tag:"早熟懂事，替家人著想",
+text:"你很早熟，常常下意識替別人承擔壓力。你看似安靜，其實心裡想得很多，也容易把照顧別人當成自己的責任。",
+quote:"象徵貧窮家庭中，被迫提前長大的孩子。"
+},
+
+"阿吉":{
+image:"aji.png",
+tag:"天真敏感，容易滿足",
+text:"你保有孩子式的好奇心，也很容易被新鮮事物吸引。即使感受到現實的羞辱與壓力，你仍能從小事裡找到短暫的快樂。",
+quote:"象徵孩子在苦難中有限卻真實的理解。"
+},
+
+"格雷上校":{
+image:"gray.png",
+tag:"外來權力，帶著善意",
+text:"你習慣處理問題，也願意提供幫助。不過你的善意有時可能站在較高的位置，因此不一定能完全理解弱勢者真正的處境。",
+quote:"象徵善意背後仍存在的階級與權力差距。"
+}
+
+};
+
+let index = 0;
+
+let scores = {};
+
+function startQuiz(){
+
+scores = {
+"江阿發":0,
+"阿桂":0,
+"阿珠":0,
+"阿吉":0,
+"格雷上校":0
+};
+
+index = 0;
+
+document.getElementById("start").classList.add("hidden");
+
+document.getElementById("quiz").classList.remove("hidden");
+
+showQuestion();
+
+}
+
+function showQuestion(){
+
+const item = questions[index];
+
+document.getElementById("progress").innerText =
+`Q${index+1}/${questions.length}`;
+
+document.getElementById("question").innerText = item.q;
+
+const answers = document.getElementById("answers");
+
+answers.innerHTML = "";
+
+item.a.forEach((ans,i)=>{
+
+const btn = document.createElement("button");
+
+btn.className = "choice";
+
+btn.innerText =
+String.fromCharCode(65+i)+". "+ans[0];
+
+btn.onclick = ()=>{
+
+scores[ans[1]]++;
+
+index++;
+
+if(index < questions.length){
+
+showQuestion();
+
+}else{
+
+showResult();
+
+}
+
+};
+
+answers.appendChild(btn);
+
+});
+
+}
+
+function showResult(){
+
+const top =
+Object.keys(scores).sort((a,b)=>
+scores[b]-scores[a])[0];
+
+const r = results[top];
+
+document.getElementById("quiz").classList.add("hidden");
+
+document.getElementById("result").classList.remove("hidden");
+
+document.getElementById("roleImage").src = r.image;
+
+document.getElementById("roleName").innerText = top;
+
+document.getElementById("roleTag").innerText = r.tag;
+
+document.getElementById("roleText").innerText = r.text;
+
+document.getElementById("roleQuote").innerText = r.quote;
+
+}
+
+function restart(){
+
+document.getElementById("result").classList.add("hidden");
+
+document.getElementById("start").classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
